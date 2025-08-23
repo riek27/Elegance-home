@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>[Your Name] - UI/UX Designer Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background-color: #1a1a2e;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(90deg, #1a1a2e, #252544);
+      padding: 2rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      color: #0ff1ce;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+    section {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem;
+    }
+    h2 {
+      color: #0ff1ce;
+      border-bottom: 2px solid #0ff1ce;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .project {
+      background: #2a2a3c;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+    }
+    .project h3 {
+      margin-top: 0;
+      color: #ffd700;
+    }
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .skill {
+      background: #252544;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      color: #0ff1ce;
+      font-weight: bold;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background: #252544;
+      color: #aaa;
+    }
+    a {
+      color: #0ff1ce;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>[Your Name]</h1>
+    <p>UI/UX Designer | Web3 & Mobile Interfaces | Figma Enthusiast</p>
+  </header>
+
+  <section>
+    <h2>About Me</h2>
+    <p>
+      I’m a passionate <strong>UI/UX Designer</strong> focused on building clean, intuitive, 
+      and futuristic digital products. I specialize in <strong>Web3 platforms, dashboards, 
+      and mobile applications</strong>, with strong skills in design systems, accessibility, 
+      and prototyping.
+    </p>
+  </section>
+
+  <section>
+    <h2>Featured Projects</h2>
+
+    <div class="project">
+      <h3>🏠 Web3 Rental Platform</h3>
+      <p>A next-gen property rental app with <strong>crypto payment integration</strong>. 
+      Designed full user flows, wallet onboarding, and a futuristic dark-mode dashboard.</p>
+      <p><strong>Tools:</strong> Figma, Web3 UX Guidelines</p>
+    </div>
+
+    <div class="project">
+      <h3>📱 Mobile Banking Dashboard</h3>
+      <p>Designed a modern fintech app dashboard with focus on <strong>clarity, accessibility, 
+      and security</strong>. Includes account overview, transactions, and card management.</p>
+      <p><strong>Tools:</strong> Figma, Adobe XD</p>
+    </div>
+
+    <div class="project">
+      <h3>🎨 Personal Portfolio Website</h3>
+      <p>My own minimalist, responsive portfolio site with <strong>clean typography 
+      and smooth interactions</strong>.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Skills & Tools</h2>
+    <div class="skills">
+      <div class="skill">Figma</div>
+      <div class="skill">Adobe XD</div>
+      <div class="skill">Sketch</div>
+      <div class="skill">Illustrator</div>
+      <div class="skill">Photoshop</div>
+      <div class="skill">Web3 UX</div>
+      <div class="skill">Prototyping</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p>📧 Email: <a href="mailto:your@email.com">your@email.com</a></p>
+    <p>💼 LinkedIn: <a href="https://linkedin.com/in/your-profile" target="_blank">linkedin.com/in/your-profile</a></p>
+    <p>🎨 Behance: <a href="https://behance.net/your-profile" target="_blank">behance.net/your-profile</a></p>
+    <p>🖼 Dribbble: <a href="https://dribbble.com/your-profile" target="_blank">dribbble.com/your-profile</a></p>
+  </section>
+
+  <footer>
+    <p>© 2025 [Your Name] — UI/UX Designer Portfolio</p>
+  </footer>
+</body>
+</html>
