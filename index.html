@@ -1844,6 +1844,111 @@
                 font-size: 19px;
             }
         }
+
+        /* ============ TIMELINE ============ */
+.timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 50px auto 0;
+    padding: 0 16px;
+}
+
+/* Vertical line */
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--blue), var(--green));
+    border-radius: 2px;
+    opacity: 0.3;
+}
+
+.timeline-item {
+    position: relative;
+    width: 100%;
+    margin-bottom: 48px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* Alternate sides on desktop */
+.timeline-item:nth-child(even) {
+    justify-content: flex-end;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 16px;
+    background: var(--blue);
+    border: 4px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px var(--blue);
+    z-index: 2;
+}
+
+.timeline-card {
+    width: 45%;
+    background: white;
+    border-radius: 20px;
+    padding: 28px 24px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--border);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.timeline-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+}
+
+.timeline-year {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: white;
+    background: var(--blue);
+    padding: 5px 14px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
+}
+
+.timeline-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--navy);
+}
+
+.timeline-card p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+/* Mobile: stack everything left */
+@media (max-width: 768px) {
+    .timeline::before {
+        left: 24px;
+    }
+    .timeline-item {
+        justify-content: flex-start !important;
+        padding-left: 60px;
+    }
+    .timeline-marker {
+        left: 24px;
+    }
+    .timeline-card {
+        width: 100%;
+    }
+}
     </style>
 </head>
 <body>
@@ -2254,46 +2359,65 @@
         </div>
     </section>
 
-    <!-- LEADERSHIP -->
-    <section class="section-light" id="leadership">
-        <div class="reveal" style="text-align: center; max-width: 700px; margin: 0 auto;">
-            <span class="eyebrow">Our Leadership</span>
-            <h2 class="section-title">Meet the Team</h2>
-            <p class="section-subtitle" style="margin: 0 auto;">The passionate individuals driving PANDA's mission forward.</p>
-        </div>
-        <div class="leaders-grid">
-            <div class="leader-card reveal reveal-delay-1">
-                <div class="leader-img">
-                    <img src="https://image.qwenlm.ai/public_source/0662d7b5-d899-45d6-8210-b1aa8e9937ab/1466af6f8-0a00-44c3-afaa-d23c8f1a0a17.png" alt="Alfred Lual Deng" />
-                </div>
-                <div class="leader-body">
-                    <h3>Alfred Lual Deng</h3>
-                    <div class="leader-role">Chief Executive Officer</div>
-                    <p>Peace advocate and founder of PANDA, committed to building a united South Sudan.</p>
-                </div>
-            </div>
-            <div class="leader-card reveal reveal-delay-2">
-                <div class="leader-img">
-                    <img src="https://image.qwenlm.ai/public_source/0662d7b5-d899-45d6-8210-b1aa8e9937ab/1855d3e41-3f0f-438a-8b60-879435c2f043.png" alt="Clement Kau Mabeny" />
-                </div>
-                <div class="leader-body">
-                    <h3>Clement Kau Mabeny</h3>
-                    <div class="leader-role">Educational Affairs Manager</div>
-                    <p>Tutor at Smooth Star Leadership Institute, leading our training sessions.</p>
-                </div>
-            </div>
-            <div class="leader-card reveal reveal-delay-3">
-                <div class="leader-img">
-                    <img src="https://image.qwenlm.ai/public_source/0662d7b5-d899-45d6-8210-b1aa8e9937ab/1d8237803-d92a-4b7e-829a-d4b5b4315b42.png" alt="William Lu Long" />
-                </div>
-                <div class="leader-body">
-                    <h3>William Lu Long</h3>
-                    <div class="leader-role">Senior Advisor</div>
-                    <p>Writer and peace activist, sharing powerful messages of hope and change.</p>
-                </div>
+   <!-- MILESTONES / ACHIEVEMENTS TIMELINE -->
+<section class="section-gray" id="milestones">
+    <div class="reveal" style="text-align: center; max-width: 700px; margin: 0 auto;">
+        <span class="eyebrow">Our Journey</span>
+        <h2 class="section-title">Milestones & Achievements</h2>
+        <p class="section-subtitle" style="margin: 0 auto;">Key moments that shaped PANDA’s mission for peace and development in South Sudan.</p>
+    </div>
+
+    <div class="timeline">
+        <div class="timeline-item reveal reveal-delay-1">
+            <div class="timeline-marker"></div>
+            <div class="timeline-card">
+                <span class="timeline-year">2021</span>
+                <h3>Foundation Established</h3>
+                <p>PANDA was founded by Alfred Lual Deng with a vision to unite communities through dialogue and youth empowerment.</p>
             </div>
         </div>
-    </section>
+        <div class="timeline-item reveal reveal-delay-2">
+            <div class="timeline-marker"></div>
+            <div class="timeline-card">
+                <span class="timeline-year">2022</span>
+                <h3>First Peace Dialogue</h3>
+                <p>Hosted our inaugural community peace forum in Juba, bringing together 200+ youth and elders for reconciliation talks.</p>
+            </div>
+        </div>
+        <div class="timeline-item reveal reveal-delay-3">
+            <div class="timeline-marker"></div>
+            <div class="timeline-card">
+                <span class="timeline-year">2023</span>
+                <h3>Youth Training Program Launched</h3>
+                <p>Started leadership and conflict resolution workshops, training over 500 young leaders across three states.</p>
+            </div>
+        </div>
+        <div class="timeline-item reveal reveal-delay-1">
+            <div class="timeline-marker"></div>
+            <div class="timeline-card">
+                <span class="timeline-year">2024</span>
+                <h3>Partnered with SSBC</h3>
+                <p>Formal collaboration with South Sudan Broadcasting Corporation to amplify peace messages nationwide.</p>
+            </div>
+        </div>
+        <div class="timeline-item reveal reveal-delay-2">
+            <div class="timeline-marker"></div>
+            <div class="timeline-card">
+                <span class="timeline-year">2025</span>
+                <h3>10,000+ Lives Touched</h3>
+                <p>Through dialogues, radio programs, and community events, our work reached over ten thousand South Sudanese.</p>
+            </div>
+        </div>
+        <div class="timeline-item reveal reveal-delay-3">
+            <div class="timeline-marker"></div>
+            <div class="timeline-card">
+                <span class="timeline-year">2026</span>
+                <h3>Online Peace Education</h3>
+                <p>Launched virtual training sessions, connecting diaspora and local youth in peacebuilding conversations.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- PARTNERS -->
     <section class="section-dark" id="partners">
