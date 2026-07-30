@@ -1,2645 +1,1081 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maker Construction Company | Construction Excellence in Action</title>
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="https://fontsource.org/fonts/inter/400.css" rel="stylesheet">
-    <link href="https://fontsource.org/fonts/inter/500.css" rel="stylesheet">
-    <link href="https://fontsource.org/fonts/inter/600.css" rel="stylesheet">
-    <link href="https://fontsource.org/fonts/inter/700.css" rel="stylesheet">
-    <link href="https://fontsource.org/fonts/inter/800.css" rel="stylesheet">
-    <link href="https://fontsource.org/fonts/inter/900.css" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="PANDA - Peace Action Network for Development Agency. Building peace, empowering youth, and fostering development in South Sudan." />
+    <title>PANDA Foundation | Peace Action Network</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'panda-blue': '#1A4B6D',
+                        'panda-teal': '#1E7A6E',
+                        'panda-gold': '#D4A017',
+                        'panda-light': '#F0F6FA',
+                        'panda-dark': '#0E2A3A',
+                    },
+                    fontFamily: {
+                        'display': ['"Playfair Display"', 'Georgia', 'serif'],
+                        'body': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        '4xl': '2rem',
+                    },
+                }
+            }
+        }
+    </script>
+
     <style>
         :root {
-            --primary: #0a1628;
-            --primary-light: #1a2d4a;
-            --accent: #f59e0b;
-            --accent-hover: #d97706;
-            --blue-accent: #3b82f6;
-            --blue-dark: #0c1f3f;
-            --blue-medium: #1e3a5f;
-            --text-dark: #1a1a2e;
-            --text-light: #6b7280;
-            --text-white: #ffffff;
-            --bg-light: #f8fafc;
-            --bg-white: #ffffff;
-            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
-            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
-            --radius: 12px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --panda-blue: #1A4B6D;
+            --panda-teal: #1E7A6E;
+            --panda-gold: #D4A017;
+            --panda-light: #F0F6FA;
+            --panda-dark: #0E2A3A;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 80px;
         }
-
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-            background: var(--bg-white);
+            font-family: 'Inter', system-ui, sans-serif;
         }
 
-        /* ===== NAVBAR ===== */
-        .navbar {
-            position: fixed;
-            top: 0;
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        .glass-nav.scrolled {
+            background: rgba(255, 255, 255, 0.96);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        }
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(14, 42, 58, 0.88) 0%, rgba(26, 75, 109, 0.65) 40%, rgba(30, 122, 110, 0.45) 70%, rgba(14, 42, 58, 0.55) 100%);
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .fade-up-delay-1 {
+            transition-delay: 0.1s;
+        }
+        .fade-up-delay-2 {
+            transition-delay: 0.2s;
+        }
+        .fade-up-delay-3 {
+            transition-delay: 0.3s;
+        }
+        .fade-up-delay-4 {
+            transition-delay: 0.4s;
+        }
+
+        /* Enhanced footer */
+        .footer-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+        .footer-link::after {
+            content: '';
+            position: absolute;
             left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 1px;
+            background: var(--panda-gold);
+            transition: width 0.3s;
+        }
+        .footer-link:hover::after {
             width: 100%;
-            z-index: 1000;
-            transition: var(--transition);
-            padding: 16px 0;
+        }
+        .social-icon {
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .social-icon:hover {
+            transform: translateY(-3px);
         }
 
-        .navbar.scrolled {
-            background: rgba(10, 22, 40, 0.97);
-            backdrop-filter: blur(20px);
-            padding: 10px 0;
-            box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+        /* Card enhancements */
+        .card-hover {
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 28px 55px rgba(0, 0, 0, 0.12), 0 10px 20px rgba(0, 0, 0, 0.06);
+        }
+        .image-zoom-wrapper {
+            overflow: hidden;
+        }
+        .image-zoom-wrapper img {
+            transition: transform 0.6s ease;
+        }
+        .image-zoom-wrapper:hover img {
+            transform: scale(1.08);
         }
 
-        .nav-container {
-            max-width: 1320px;
-            margin: 0 auto;
-            padding: 0 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            z-index: 1001;
-        }
-
-        .logo-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--accent);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            font-weight: 900;
-            color: var(--primary);
+        .btn-gold-pulse {
             position: relative;
             overflow: hidden;
         }
-
-        .logo-icon::after {
+        .btn-gold-pulse::after {
             content: '';
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.3) 50%, transparent 60%);
-            animation: logoShine 3s infinite;
-        }
-
-        @keyframes logoShine {
-            0%, 100% { transform: translateX(-100%); }
-            50% { transform: translateX(100%); }
-        }
-
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .logo-text .brand {
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--text-white);
-            letter-spacing: -0.5px;
-            line-height: 1.1;
-        }
-
-        .logo-text .tagline {
-            font-size: 10px;
-            color: var(--accent);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: rgba(255,255,255,0.85);
-            font-size: 14px;
-            font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-white);
-            background: rgba(255,255,255,0.1);
-        }
-
-        .nav-links a.active {
-            color: var(--accent);
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .nav-phone {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-white);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .nav-phone:hover {
-            color: var(--accent);
-        }
-
-        .nav-phone i {
-            width: 36px;
-            height: 36px;
-            background: rgba(245, 158, 11, 0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            color: var(--accent);
-        }
-
-        .btn-quote-nav {
-            background: var(--accent);
-            color: var(--primary);
-            padding: 10px 24px;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 14px;
-            text-decoration: none;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        .btn-quote-nav:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.35);
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            z-index: 1001;
-            padding: 8px;
-        }
-
-        .hamburger span {
-            width: 28px;
-            height: 2.5px;
-            background: var(--text-white);
-            border-radius: 2px;
-            transition: var(--transition);
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .hamburger.active span:nth-child(2) {
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
             opacity: 0;
+            transition: opacity 0.4s;
         }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-
-        /* ===== HERO SECTION ===== */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-        }
-
-        .hero-bg img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(10, 22, 40, 0.92) 0%, rgba(10, 22, 40, 0.7) 40%, rgba(10, 22, 40, 0.4) 100%);
-            z-index: 1;
-        }
-
-        .hero-particles {
-            position: absolute;
-            inset: 0;
-            z-index: 2;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(245, 158, 11, 0.3);
-            border-radius: 50%;
-            animation: float linear infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 3;
-            max-width: 1320px;
-            margin: 0 auto;
-            padding: 120px 24px 80px;
-            width: 100%;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(245, 158, 11, 0.15);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            padding: 8px 20px;
-            border-radius: 50px;
-            margin-bottom: 24px;
-            animation: fadeInUp 0.8s ease;
-        }
-
-        .hero-badge span {
-            color: var(--accent);
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .hero-badge i {
-            color: var(--accent);
-            font-size: 14px;
-        }
-
-        .hero h1 {
-            font-size: clamp(40px, 6vw, 72px);
-            font-weight: 900;
-            color: var(--text-white);
-            line-height: 1.05;
-            margin-bottom: 24px;
-            letter-spacing: -2px;
-            animation: fadeInUp 0.8s ease 0.2s both;
-        }
-
-        .hero h1 .highlight {
-            background: linear-gradient(135deg, var(--accent), #fbbf24);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-description {
-            font-size: clamp(16px, 2vw, 20px);
-            color: rgba(255,255,255,0.75);
-            max-width: 600px;
-            margin-bottom: 40px;
-            line-height: 1.7;
-            animation: fadeInUp 0.8s ease 0.4s both;
-        }
-
-        .hero-cta {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease 0.6s both;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--accent);
-            color: var(--primary);
-            padding: 16px 36px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 16px;
-            text-decoration: none;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn-primary:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary:hover {
-            background: var(--accent-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(245, 158, 11, 0.4);
-        }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: transparent;
-            color: var(--text-white);
-            padding: 16px 36px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 16px;
-            text-decoration: none;
-            transition: var(--transition);
-            border: 2px solid rgba(255,255,255,0.3);
-            cursor: pointer;
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: rgba(245, 158, 11, 0.1);
-            transform: translateY(-3px);
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 48px;
-            margin-top: 60px;
-            animation: fadeInUp 0.8s ease 0.8s both;
-        }
-
-        .stat-item {
-            text-align: left;
-        }
-
-        .stat-number {
-            font-size: 36px;
-            font-weight: 900;
-            color: var(--accent);
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 13px;
-            color: rgba(255,255,255,0.6);
-            font-weight: 500;
-            margin-top: 4px;
-        }
-
-        .hero-scroll {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 3;
-            animation: bounce 2s infinite;
-        }
-
-        .hero-scroll a {
-            color: rgba(255,255,255,0.5);
-            font-size: 24px;
-            text-decoration: none;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-12px); }
-            60% { transform: translateX(-50%) translateY(-6px); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ===== SECTION STYLES ===== */
-        .section {
-            padding: 100px 0;
-        }
-
-        .container {
-            max-width: 1320px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 64px;
-        }
-
-        .section-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--accent);
-            margin-bottom: 16px;
-        }
-
-        .section-label::before,
-        .section-label::after {
-            content: '';
-            width: 30px;
-            height: 2px;
-            background: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title {
-            font-size: clamp(32px, 4vw, 48px);
-            font-weight: 800;
-            color: var(--text-dark);
-            line-height: 1.15;
-            letter-spacing: -1px;
-            margin-bottom: 16px;
-        }
-
-        .section-subtitle {
-            font-size: 18px;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.7;
-        }
-
-        /* ===== ABOUT SECTION ===== */
-        .about {
-            background: var(--bg-white);
-            position: relative;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .about-image-wrapper {
-            position: relative;
-        }
-
-        .about-image {
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow-xl);
-            position: relative;
-        }
-
-        .about-image img {
-            width: 100%;
-            height: 480px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.6s ease;
-        }
-
-        .about-image:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-image-badge {
-            position: absolute;
-            bottom: -20px;
-            right: -20px;
-            background: var(--accent);
-            color: var(--primary);
-            padding: 24px 32px;
-            border-radius: 16px;
-            text-align: center;
-            box-shadow: var(--shadow-lg);
-            z-index: 2;
-        }
-
-        .about-image-badge .number {
-            font-size: 42px;
-            font-weight: 900;
-            line-height: 1;
-        }
-
-        .about-image-badge .label {
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .about-pattern {
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            width: 100px;
-            height: 100px;
-            background: repeating-linear-gradient(
-                45deg,
-                var(--accent),
-                var(--accent) 2px,
-                transparent 2px,
-                transparent 12px
-            );
-            border-radius: 16px;
-            opacity: 0.3;
-            z-index: 0;
-        }
-
-        .about-content .section-label {
-            justify-content: flex-start;
-        }
-
-        .about-content .section-label::before {
-            display: none;
-        }
-
-        .about-content .section-title {
-            text-align: left;
-        }
-
-        .about-text {
-            font-size: 16px;
-            color: var(--text-light);
-            line-height: 1.8;
-            margin-bottom: 24px;
-        }
-
-        .about-features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-bottom: 32px;
-        }
-
-        .about-feature {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 16px;
-            background: var(--bg-light);
-            border-radius: 10px;
-            transition: var(--transition);
-        }
-
-        .about-feature:hover {
-            background: rgba(245, 158, 11, 0.1);
-            transform: translateX(4px);
-        }
-
-        .about-feature i {
-            color: var(--accent);
-            font-size: 18px;
-            width: 24px;
-            text-align: center;
-        }
-
-        .about-feature span {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        /* ===== SERVICES SECTION ===== */
-        .services {
-            background: var(--bg-light);
-            position: relative;
-        }
-
-        .services::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
-        }
-
-        .service-card {
-            background: var(--bg-white);
-            border-radius: 20px;
-            padding: 40px 32px;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.05);
-            group: true;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--accent);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-xl);
-            border-color: transparent;
-        }
-
-        .service-icon {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.05));
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 24px;
-            transition: var(--transition);
-        }
-
-        .service-icon i {
-            font-size: 28px;
-            color: var(--accent);
-            transition: var(--transition);
-        }
-
-        .service-card:hover .service-icon {
-            background: var(--accent);
-        }
-
-        .service-card:hover .service-icon i {
-            color: var(--primary);
-        }
-
-        .service-card h3 {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 12px;
-        }
-
-        .service-card p {
-            font-size: 15px;
-            color: var(--text-light);
-            line-height: 1.7;
-        }
-
-        .service-number {
-            position: absolute;
-            top: 20px;
-            right: 24px;
-            font-size: 48px;
-            font-weight: 900;
-            color: rgba(0,0,0,0.03);
-            line-height: 1;
-        }
-
-        /* ===== PROJECTS SECTION ===== */
-        .projects {
-            background: var(--bg-white);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 28px;
-        }
-
-        .project-card {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            cursor: pointer;
-            group: true;
-        }
-
-        .project-card.tall {
-            grid-row: span 2;
-        }
-
-        .project-card img {
-            width: 100%;
-            height: 100%;
-            min-height: 320px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.6s ease;
-        }
-
-        .project-card:hover img {
-            transform: scale(1.08);
-        }
-
-        .project-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 30%, rgba(10, 22, 40, 0.95) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 32px;
-            transition: var(--transition);
-        }
-
-        .project-card:hover .project-overlay {
-            background: linear-gradient(180deg, transparent 10%, rgba(10, 22, 40, 0.95) 100%);
-        }
-
-        .project-category {
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent);
-            margin-bottom: 8px;
-        }
-
-        .project-title {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--text-white);
-            margin-bottom: 8px;
-        }
-
-        .project-desc {
-            font-size: 14px;
-            color: rgba(255,255,255,0.7);
-            line-height: 1.6;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
-        }
-
-        .project-card:hover .project-desc {
-            max-height: 100px;
-        }
-
-        .project-arrow {
-            position: absolute;
-            top: 24px;
-            right: 24px;
-            width: 44px;
-            height: 44px;
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-white);
-            font-size: 16px;
-            opacity: 0;
-            transform: translate(-10px, 10px);
-            transition: var(--transition);
-        }
-
-        .project-card:hover .project-arrow {
-            opacity: 1;
-            transform: translate(0, 0);
-        }
-
-        /* ===== WHY CHOOSE US ===== */
-        .why-us {
-            background: linear-gradient(135deg, var(--blue-dark) 0%, var(--primary) 50%, var(--blue-medium) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .why-us::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .why-us::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -10%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .why-us .section-title {
-            color: var(--text-white);
-        }
-
-        .why-us .section-subtitle {
-            color: rgba(255,255,255,0.6);
-        }
-
-        .why-us-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .why-card {
-            background: rgba(255,255,255,0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 40px 32px;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .why-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), transparent);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .why-card:hover::before {
+        .btn-gold-pulse:hover::after {
             opacity: 1;
         }
 
-        .why-card:hover {
+        /* Enhanced card with gradient border */
+        .card-gradient {
+            position: relative;
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        .card-gradient::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 1.5rem;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--panda-gold), var(--panda-teal), var(--panda-blue));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        .card-gradient:hover {
             transform: translateY(-6px);
-            border-color: rgba(245, 158, 11, 0.3);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
-        .why-card-icon {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, var(--accent), #fbbf24);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 24px;
-            position: relative;
-            z-index: 1;
+        /* Gallery grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
         }
-
-        .why-card-icon i {
-            font-size: 24px;
-            color: var(--primary);
-        }
-
-        .why-card h3 {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--text-white);
-            margin-bottom: 12px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .why-card p {
-            font-size: 15px;
-            color: rgba(255,255,255,0.6);
-            line-height: 1.7;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* ===== FAQS SECTION ===== */
-        .faqs {
-            background: var(--bg-light);
-        }
-
-        .faqs-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            background: var(--bg-white);
-            border-radius: 16px;
-            margin-bottom: 16px;
+        .gallery-item {
+            border-radius: 1.5rem;
             overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.05);
-            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        .gallery-item .caption {
+            padding: 0.75rem 1rem;
+            background: white;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--panda-blue);
+            text-align: center;
+            border-top: 2px solid var(--panda-light);
         }
 
-        .faq-item:hover {
-            border-color: rgba(245, 158, 11, 0.2);
+        /* Mobile menu (unchanged, robust) */
+        #mobile-menu.mobile-menu {
+            display: block !important;
+            position: fixed !important;
+            top: 0 !important;
+            right: 0 !important;
+            height: 100% !important;
+            width: 18rem !important;
+            background: white !important;
+            transform: translateX(100%) !important;
+            transition: transform 0.4s ease !important;
+            will-change: transform !important;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15) !important;
+            z-index: 60 !important;
+            overflow-y: auto !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+        #mobile-menu.mobile-menu.open {
+            transform: translateX(0) !important;
         }
 
-        .faq-item.active {
-            border-color: var(--accent);
-            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.15);
-        }
-
-        .faq-question {
+        .mobile-accordion-btn {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 24px 28px;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-weight: 500;
+            color: #1a3c2a;
+            border-radius: 0.75rem;
+            background: transparent;
+            border: none;
             cursor: pointer;
-            transition: var(--transition);
-            gap: 16px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: background 0.15s;
+            text-align: left;
         }
-
-        .faq-question:hover {
-            background: rgba(245, 158, 11, 0.03);
+        .mobile-accordion-btn:hover {
+            background: rgba(245, 245, 245, 0.6);
         }
-
-        .faq-question h3 {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text-dark);
-            flex: 1;
+        .accordion-arrow {
+            transition: transform 0.25s ease;
+            width: 1rem;
+            height: 1rem;
         }
-
-        .faq-toggle {
-            width: 36px;
-            height: 36px;
-            background: var(--bg-light);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-            flex-shrink: 0;
+        .mobile-accordion-btn.active .accordion-arrow {
+            transform: rotate(180deg);
         }
-
-        .faq-item.active .faq-toggle {
-            background: var(--accent);
-            transform: rotate(45deg);
-        }
-
-        .faq-toggle i {
-            font-size: 14px;
-            color: var(--text-light);
-            transition: var(--transition);
-        }
-
-        .faq-item.active .faq-toggle i {
-            color: var(--primary);
-        }
-
-        .faq-answer {
+        .mobile-accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.4s ease;
+            transition: max-height 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 0.125rem;
         }
-
-        .faq-answer-inner {
-            padding: 0 28px 24px;
-            font-size: 15px;
-            color: var(--text-light);
-            line-height: 1.8;
-        }
-
-        .faq-item.active .faq-answer {
+        .mobile-accordion-content.open {
             max-height: 300px;
         }
-
-        /* ===== CONTACT SECTION ===== */
-        .contact {
-            background: var(--bg-white);
-            position: relative;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: start;
-        }
-
-        .contact-info {
-            padding-right: 40px;
-        }
-
-        .contact-info .section-label {
-            justify-content: flex-start;
-        }
-
-        .contact-info .section-label::before {
-            display: none;
-        }
-
-        .contact-info .section-title {
-            text-align: left;
-        }
-
-        .contact-text {
-            font-size: 16px;
-            color: var(--text-light);
-            line-height: 1.8;
-            margin-bottom: 40px;
-        }
-
-        .contact-details {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-            margin-bottom: 40px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-        }
-
-        .contact-item-icon {
-            width: 52px;
-            height: 52px;
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.05));
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .contact-item-icon i {
-            font-size: 20px;
-            color: var(--accent);
-        }
-
-        .contact-item-content h4 {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 4px;
-        }
-
-        .contact-item-content p,
-        .contact-item-content a {
-            font-size: 15px;
-            color: var(--text-light);
+        .mobile-link-sub {
+            padding: 0.6rem 1rem 0.6rem 2rem;
+            font-weight: 400;
+            color: #4b5563;
+            border-radius: 0.75rem;
             text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .contact-item-content a:hover {
-            color: var(--accent);
-        }
-
-        .contact-social {
-            display: flex;
-            gap: 12px;
-        }
-
-        .social-link {
-            width: 44px;
-            height: 44px;
-            background: var(--bg-light);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-light);
-            font-size: 18px;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .social-link:hover {
-            background: var(--accent);
-            color: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .contact-form-wrapper {
-            background: var(--bg-light);
-            border-radius: 24px;
-            padding: 40px;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .contact-form-wrapper h3 {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 8px;
-        }
-
-        .contact-form-wrapper > p {
-            font-size: 14px;
-            color: var(--text-light);
-            margin-bottom: 32px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
+            transition: background 0.15s;
             display: block;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 8px;
+        }
+        .mobile-link-sub:hover {
+            background: rgba(245, 245, 245, 0.6);
+            color: #0b7e4a;
         }
 
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 14px 18px;
-            border: 2px solid rgba(0,0,0,0.08);
-            border-radius: 12px;
-            font-family: 'Inter', sans-serif;
-            font-size: 15px;
-            color: var(--text-dark);
-            background: var(--bg-white);
-            transition: var(--transition);
-            outline: none;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 16px 32px;
-            background: var(--accent);
-            color: var(--primary);
-            border: none;
-            border-radius: 12px;
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .btn-submit:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.35);
-        }
-
-        /* ===== CTA SECTION ===== */
-        .cta-section {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--blue-dark) 100%);
-            padding: 80px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .cta-content {
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .cta-content h2 {
-            font-size: clamp(28px, 4vw, 42px);
-            font-weight: 800;
-            color: var(--text-white);
-            margin-bottom: 16px;
-            letter-spacing: -1px;
-        }
-
-        .cta-content p {
-            font-size: 18px;
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 36px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-buttons {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        /* ===== FOOTER ===== */
-        .footer {
-            background: #050d18;
-            padding: 60px 0 0;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 48px;
-            padding-bottom: 48px;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .footer-brand .logo-text .brand {
-            font-size: 22px;
-        }
-
-        .footer-brand p {
-            font-size: 14px;
-            color: rgba(255,255,255,0.5);
-            line-height: 1.8;
-            margin-top: 16px;
-            max-width: 320px;
-        }
-
-        .footer-col h4 {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--text-white);
-            margin-bottom: 20px;
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 12px;
-        }
-
-        .footer-col ul li a {
-            font-size: 14px;
-            color: rgba(255,255,255,0.5);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-col ul li a:hover {
-            color: var(--accent);
-            padding-left: 6px;
-        }
-
-        .footer-bottom {
-            padding: 24px 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .footer-bottom p {
-            font-size: 13px;
-            color: rgba(255,255,255,0.4);
-        }
-
-        .footer-bottom-links {
-            display: flex;
-            gap: 24px;
-        }
-
-        .footer-bottom-links a {
-            font-size: 13px;
-            color: rgba(255,255,255,0.4);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-bottom-links a:hover {
-            color: var(--accent);
-        }
-
-        /* ===== MODAL ===== */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(10, 22, 40, 0.8);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal {
-            background: var(--bg-white);
-            border-radius: 24px;
-            max-width: 560px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 40px;
-            transform: scale(0.9) translateY(20px);
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .modal-overlay.active .modal {
-            transform: scale(1) translateY(0);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 40px;
-            height: 40px;
-            background: var(--bg-light);
-            border: none;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 18px;
-            color: var(--text-light);
-        }
-
-        .modal-close:hover {
-            background: #fee2e2;
-            color: #ef4444;
-        }
-
-        .modal h2 {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--text-dark);
-            margin-bottom: 8px;
-        }
-
-        .modal > p {
-            font-size: 15px;
-            color: var(--text-light);
-            margin-bottom: 28px;
-        }
-
-        .modal .form-group input,
-        .modal .form-group textarea,
-        .modal .form-group select {
-            background: var(--bg-light);
-        }
-
-        /* ===== BACK TO TOP ===== */
-        .back-to-top {
-            position: fixed;
-            bottom: 32px;
-            right: 32px;
-            width: 48px;
-            height: 48px;
-            background: var(--accent);
-            color: var(--primary);
-            border: none;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            cursor: pointer;
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .back-to-top:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5);
-        }
-
-        /* ===== MOBILE NAV ===== */
-        .mobile-nav {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 100%;
-            max-width: 400px;
-            height: 100vh;
-            background: var(--primary);
-            z-index: 1000;
-            padding: 100px 32px 32px;
-            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow-y: auto;
-        }
-
-        .mobile-nav.active {
-            right: 0;
-        }
-
-        .mobile-nav-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-        }
-
-        .mobile-nav-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .mobile-nav a {
-            display: block;
-            padding: 16px 0;
-            color: rgba(255,255,255,0.85);
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: 600;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-            transition: var(--transition);
-        }
-
-        .mobile-nav a:hover {
-            color: var(--accent);
-            padding-left: 12px;
-        }
-
-        .mobile-nav .mobile-phone {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-top: 24px;
-            padding: 16px;
-            background: rgba(245, 158, 11, 0.1);
-            border-radius: 12px;
-            color: var(--accent);
-            font-weight: 700;
-            text-decoration: none;
-            font-size: 18px;
-        }
-
-        .mobile-nav .btn-quote-nav {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            padding: 16px;
-            font-size: 16px;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 1024px) {
-            .nav-links, .nav-right .nav-phone {
-                display: none;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 48px;
-            }
-
-            .about-content .section-label {
-                justify-content: center;
-            }
-
-            .about-content .section-label::before {
-                display: block;
-            }
-
-            .about-content .section-title {
-                text-align: center;
-            }
-
-            .about-text {
-                text-align: center;
-            }
-
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .why-us-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .contact-info {
-                padding-right: 0;
-            }
-
-            .contact-info .section-label {
-                justify-content: center;
-            }
-
-            .contact-info .section-label::before {
-                display: block;
-            }
-
-            .contact-info .section-title {
-                text-align: center;
-            }
-
-            .contact-text {
-                text-align: center;
-            }
-
-            .contact-details {
-                align-items: center;
-            }
-
-            .contact-social {
-                justify-content: center;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 32px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .section {
-                padding: 72px 0;
-            }
-
-            .hero-stats {
-                gap: 32px;
-            }
-
-            .stat-number {
-                font-size: 28px;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .project-card.tall {
-                grid-row: span 1;
-            }
-
-            .why-us-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-features {
-                grid-template-columns: 1fr;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-cta {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .btn-primary, .btn-secondary {
-                justify-content: center;
-            }
-
-            .about-image-badge {
-                bottom: -10px;
-                right: 10px;
-                padding: 16px 20px;
-            }
-
-            .about-image-badge .number {
-                font-size: 32px;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .contact-form-wrapper {
-                padding: 28px 20px;
-            }
-
-            .modal {
-                padding: 28px 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-stats {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .stat-item {
-                text-align: center;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .logo-text .brand {
-                font-size: 16px;
-            }
-        }
-
-        /* ===== ANIMATIONS ===== */
-        .counter {
-            display: inline;
-        }
-
-        /* Loading animation */
-        .page-loader {
-            position: fixed;
-            inset: 0;
-            background: var(--primary);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 20px;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-
-        .page-loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader-spinner {
-            width: 48px;
-            height: 48px;
-            border: 4px solid rgba(245, 158, 11, 0.2);
-            border-top-color: var(--accent);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .loader-text {
-            color: var(--accent);
-            font-weight: 700;
-            font-size: 14px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
+        ::selection {
+            background: var(--panda-teal);
+            color: #fff;
         }
     </style>
 </head>
-<body>
 
-    <!-- Page Loader -->
-    <div class="page-loader" id="pageLoader">
-        <div class="loader-spinner"></div>
-        <div class="loader-text">MCC</div>
-    </div>
+<body class="bg-white text-gray-800 antialiased">
 
-    <!-- Navbar -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="#home" class="nav-logo">
-                <div class="logo-icon">M</div>
-                <div class="logo-text">
-                    <span class="brand">Maker Construction</span>
-                    <span class="tagline">Excellence in Action</span>
-                </div>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#faqs">FAQs</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="nav-right">
-                <a href="tel:0927772016" class="nav-phone">
-                    <i class="fas fa-phone"></i>
-                    <span>0927 772 016</span>
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav id="navbar" class="glass-nav fixed top-0 left-0 w-full z-50 transition-all duration-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center gap-2 flex-shrink-0">
+                    <div class="w-9 h-9 bg-panda-blue rounded-full flex items-center justify-center">
+                        <span class="text-white font-display font-bold text-lg">🐼</span>
+                    </div>
+                    <span class="font-display font-semibold text-panda-blue text-sm sm:text-base leading-tight hidden sm:block">PANDA<br class="sm:hidden"> Foundation</span>
+                    <span class="font-display font-semibold text-panda-blue text-sm sm:hidden">PANDA</span>
                 </a>
-                <button class="btn-quote-nav" onclick="openModal()">Get Quote</button>
-                <div class="hamburger" id="hamburger" onclick="toggleMobileNav()">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+
+                <!-- Desktop Nav -->
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="#home" class="px-3 py-2 text-sm font-medium text-panda-blue hover:text-panda-teal transition-colors rounded-lg hover:bg-panda-light">Home</a>
+                    <div class="relative group">
+                        <button class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-panda-teal transition-colors rounded-lg hover:bg-panda-light flex items-center gap-1">
+                            About
+                            <svg class="w-3.5 h-3.5 opacity-60 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div class="absolute top-full left-0 mt-1 w-60 bg-white rounded-2xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 py-2">
+                            <a href="#mission" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-panda-light hover:text-panda-teal">Our Mission</a>
+                            <a href="#team" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-panda-light hover:text-panda-teal">Our Team</a>
+                            <a href="#partners" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-panda-light hover:text-panda-teal">Partners</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <button class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-panda-teal transition-colors rounded-lg hover:bg-panda-light flex items-center gap-1">
+                            Programs
+                            <svg class="w-3.5 h-3.5 opacity-60 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div class="absolute top-full left-0 mt-1 w-60 bg-white rounded-2xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 py-2">
+                            <a href="#programs" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-panda-light hover:text-panda-teal">Peacebuilding</a>
+                            <a href="#programs" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-panda-light hover:text-panda-teal">Youth Empowerment</a>
+                            <a href="#programs" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-panda-light hover:text-panda-teal">Education & Training</a>
+                            <a href="#programs" class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-panda-light hover:text-panda-teal">Advocacy</a>
+                        </div>
+                    </div>
+                    <a href="#events" class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-panda-teal rounded-lg hover:bg-panda-light">Events</a>
+                    <a href="#gallery" class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-panda-teal rounded-lg hover:bg-panda-light">Gallery</a>
+                    <a href="#news" class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-panda-teal rounded-lg hover:bg-panda-light">News</a>
+                    <a href="#support" class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-panda-teal rounded-lg hover:bg-panda-light">Support</a>
+                    <a href="#contact" class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-panda-teal rounded-lg hover:bg-panda-light">Contact</a>
                 </div>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Mobile Nav Overlay -->
-    <div class="mobile-nav-overlay" id="mobileOverlay" onclick="toggleMobileNav()"></div>
+                <!-- Desktop CTA -->
+                <div class="hidden lg:block">
+                    <a href="#donate" class="btn-gold-pulse inline-flex items-center px-5 py-2.5 bg-panda-gold text-white font-semibold text-sm rounded-full shadow-lg hover:bg-yellow-600 transition">Get Involved</a>
+                </div>
 
-    <!-- Mobile Nav -->
-    <div class="mobile-nav" id="mobileNav">
-        <a href="#home" onclick="toggleMobileNav()">Home</a>
-        <a href="#about" onclick="toggleMobileNav()">About</a>
-        <a href="#services" onclick="toggleMobileNav()">Services</a>
-        <a href="#projects" onclick="toggleMobileNav()">Projects</a>
-        <a href="#faqs" onclick="toggleMobileNav()">FAQs</a>
-        <a href="#contact" onclick="toggleMobileNav()">Contact</a>
-        <a href="tel:0927772016" class="mobile-phone">
-            <i class="fas fa-phone"></i>
-            0927 772 016
-        </a>
-        <button class="btn-quote-nav" onclick="openModal(); toggleMobileNav();">Get Quote</button>
-    </div>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-bg">
-            <img src="assets/maker.jpg" alt="Construction Site">
-        </div>
-        <div class="hero-overlay"></div>
-        <div class="hero-particles" id="particles"></div>
-        <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fas fa-hard-hat"></i>
-                <span>Juba, South Sudan</span>
-            </div>
-            <h1>Building the Future<br>with <span class="highlight">Excellence</span></h1>
-            <p class="hero-description">Maker Construction Company delivers reliable, high-quality construction services that meet modern standards while addressing the unique needs of our clients across South Sudan.</p>
-            <div class="hero-cta">
-                <a href="tel:0927772016" class="btn-primary">
-                    <i class="fas fa-phone"></i>
-                    Call Us Now
-                </a>
-                <button class="btn-secondary" onclick="openModal()">
-                    <i class="fas fa-file-alt"></i>
-                    Get a Free Quote
+                <!-- Mobile Toggle -->
+                <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg hover:bg-panda-light">
+                    <svg id="menu-icon-open" class="w-6 h-6 text-panda-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    <svg id="menu-icon-close" class="w-6 h-6 text-panda-blue hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                 </button>
             </div>
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <div class="stat-number"><span class="counter" data-target="50">0</span>+</div>
-                    <div class="stat-label">Projects Completed</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number"><span class="counter" data-target="100">0</span>%</div>
-                    <div class="stat-label">Client Satisfaction</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number"><span class="counter" data-target="15">0</span>+</div>
-                    <div class="stat-label">Expert Team Members</div>
-                </div>
-            </div>
         </div>
-        <div class="hero-scroll">
-            <a href="#about"><i class="fas fa-chevron-down"></i></a>
-        </div>
-    </section>
 
-    <!-- About Section -->
-    <section class="section about" id="about">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-image-wrapper" data-aos="fade-right" data-aos-duration="800">
-                    <div class="about-pattern"></div>
-                    <div class="about-image">
-                        <img src="assets/maker.jpg" alt="MCC Team">
-                    </div>
-                    <div class="about-image-badge">
-                        <div class="number">MCC</div>
-                        <div class="label">Since Establishment</div>
-                    </div>
-                </div>
-                <div class="about-content" data-aos="fade-left" data-aos-duration="800">
-                    <div class="section-label">About Us</div>
-                    <h2 class="section-title">Your Trusted Construction Partner in South Sudan</h2>
-                    <p class="about-text">Maker Construction Company (MCC) is a dynamic construction firm based in Juba, South Sudan. We are committed to delivering reliable, high-quality construction services that meet modern standards while addressing the unique needs of our clients.</p>
-                    <p class="about-text">With a strong focus on excellence, safety, and efficiency, MCC continues to contribute to the growth and development of infrastructure in the region.</p>
-                    <div class="about-features">
-                        <div class="about-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Quality Workmanship</span>
-                        </div>
-                        <div class="about-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Timely Delivery</span>
-                        </div>
-                        <div class="about-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Professional Team</span>
-                        </div>
-                        <div class="about-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Local Expertise</span>
-                        </div>
-                    </div>
-                    <a href="#services" class="btn-primary">
-                        Our Services <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu lg:hidden fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-50 overflow-y-auto">
+            <div class="pt-20 px-6 pb-8">
+                <div class="flex flex-col gap-1">
+                    <a href="#home" class="mobile-link block px-4 py-3 font-medium text-panda-blue hover:bg-panda-light rounded-xl">Home</a>
 
-    <!-- Services Section -->
-    <section class="section services" id="services">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <div class="section-label">What We Do</div>
-                <h2 class="section-title">Our Core Services</h2>
-                <p class="section-subtitle">We offer comprehensive construction solutions tailored to meet the diverse needs of residential, commercial, and infrastructure projects.</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-number">01</div>
-                    <div class="service-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <h3>Building Construction</h3>
-                    <p>Complete residential and commercial building construction from foundation to finishing, delivering structures that stand the test of time.</p>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-number">02</div>
-                    <div class="service-icon">
-                        <i class="fas fa-paint-roller"></i>
-                    </div>
-                    <h3>Renovation & Remodeling</h3>
-                    <p>Transform existing spaces with our expert renovation and remodeling services, breathing new life into homes and commercial properties.</p>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-number">03</div>
-                    <div class="service-icon">
-                        <i class="fas fa-clipboard-check"></i>
-                    </div>
-                    <h3>Project Management</h3>
-                    <p>End-to-end project management ensuring your construction project stays on budget, on schedule, and meets the highest quality standards.</p>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="service-number">04</div>
-                    <div class="service-icon">
-                        <i class="fas fa-road"></i>
-                    </div>
-                    <h3>Civil Works</h3>
-                    <p>Expert civil engineering and general construction services including roads, bridges, drainage systems, and public infrastructure projects.</p>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
-                    <div class="service-number">05</div>
-                    <div class="service-icon">
-                        <i class="fas fa-wrench"></i>
-                    </div>
-                    <h3>Maintenance & Repair</h3>
-                    <p>Comprehensive maintenance and repair services to keep your buildings in optimal condition, ensuring longevity and safety.</p>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="600">
-                    <div class="service-number">06</div>
-                    <div class="service-icon">
-                        <i class="fas fa-drafting-compass"></i>
-                    </div>
-                    <h3>Consulting & Design</h3>
-                    <p>Professional consulting and architectural design services to help you plan and visualize your construction project from concept to completion.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="section projects" id="projects">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <div class="section-label">Our Portfolio</div>
-                <h2 class="section-title">Featured Projects</h2>
-                <p class="section-subtitle">Explore our completed projects that showcase our commitment to quality, innovation, and excellence in every build.</p>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card tall" data-aos="fade-up" data-aos-delay="100">
-                    <img src="assets/maker.jpg" alt="Commercial Building">
-                    <div class="project-overlay">
-                        <div class="project-category">Commercial</div>
-                        <h3 class="project-title">Modern Office Complex</h3>
-                        <p class="project-desc">A state-of-the-art commercial building featuring glass facade design and modern amenities in Juba's business district.</p>
-                    </div>
-                    <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
-                </div>
-                <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-                    <img src="https://image.qwenlm.ai/public_source/752cd7d4-7c4f-4f1d-ac16-54db26a66727/1e99e9c85-266d-45ca-b659-de3ec5367dcc.png" alt="Residential Villa">
-                    <div class="project-overlay">
-                        <div class="project-category">Residential</div>
-                        <h3 class="project-title">Luxury Residential Villa</h3>
-                        <p class="project-desc">Contemporary residential villa with premium finishes and landscaped gardens.</p>
-                    </div>
-                    <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
-                </div>
-                <div class="project-card" data-aos="fade-up" data-aos-delay="300">
-                    <img src="https://image.qwenlm.ai/public_source/752cd7d4-7c4f-4f1d-ac16-54db26a66727/1acdf54b5-5272-43bf-9188-5b7c787bc482.png" alt="Interior Renovation">
-                    <div class="project-overlay">
-                        <div class="project-category">Renovation</div>
-                        <h3 class="project-title">Interior Remodeling Project</h3>
-                        <p class="project-desc">Complete interior transformation with modern design and high-end finishes.</p>
-                    </div>
-                    <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
-                </div>
-                <div class="project-card" data-aos="fade-up" data-aos-delay="400">
-                    <img src="https://image.qwenlm.ai/public_source/752cd7d4-7c4f-4f1d-ac16-54db26a66727/179e10560-b2b5-4aa0-b5ad-10a20d240935.png" alt="Infrastructure Project">
-                    <div class="project-overlay">
-                        <div class="project-category">Infrastructure</div>
-                        <h3 class="project-title">Road & Bridge Construction</h3>
-                        <p class="project-desc">Major civil infrastructure project including road construction and bridge development.</p>
-                    </div>
-                    <div class="project-arrow"><i class="fas fa-arrow-right"></i></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Us Section -->
-    <section class="section why-us" id="why-us">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <div class="section-label">Why Choose Us</div>
-                <h2 class="section-title">The MCC Advantage</h2>
-                <p class="section-subtitle">We combine expertise, dedication, and innovation to deliver construction solutions that exceed expectations.</p>
-            </div>
-            <div class="why-us-grid">
-                <div class="why-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="why-card-icon">
-                        <i class="fas fa-medal"></i>
-                    </div>
-                    <h3>Commitment to Quality</h3>
-                    <p>We use premium materials and employ rigorous quality control measures to ensure every project meets the highest standards of durability and excellence.</p>
-                </div>
-                <div class="why-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="why-card-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Skilled Workforce</h3>
-                    <p>Our team of experienced engineers, architects, and skilled workers bring decades of combined expertise to every project we undertake.</p>
-                </div>
-                <div class="why-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="why-card-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h3>Timely Completion</h3>
-                    <p>We understand the importance of deadlines. Our efficient project management ensures on-time delivery without compromising quality.</p>
-                </div>
-                <div class="why-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="why-card-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3>Customer-Focused</h3>
-                    <p>Your satisfaction is our priority. We work closely with clients throughout the project lifecycle to ensure their vision becomes reality.</p>
-                </div>
-                <div class="why-card" data-aos="fade-up" data-aos-delay="500">
-                    <div class="why-card-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h3>Local Expertise</h3>
-                    <p>With deep knowledge of Juba and surrounding areas, we understand local conditions, regulations, and requirements for successful construction.</p>
-                </div>
-                <div class="why-card" data-aos="fade-up" data-aos-delay="600">
-                    <div class="why-card-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Safety First</h3>
-                    <p>Safety is at the core of everything we do. We implement comprehensive safety protocols to protect our workers and your investment.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQs Section -->
-    <section class="section faqs" id="faqs">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <div class="section-label">FAQs</div>
-                <h2 class="section-title">Frequently Asked Questions</h2>
-                <p class="section-subtitle">Find answers to common questions about our services, process, and how we can help bring your construction project to life.</p>
-            </div>
-            <div class="faqs-container">
-                <div class="faq-item active" data-aos="fade-up" data-aos-delay="100">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <h3>What types of construction projects does MCC handle?</h3>
-                        <div class="faq-toggle"><i class="fas fa-plus"></i></div>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            MCC handles a wide range of construction projects including residential buildings, commercial complexes, renovations and remodeling, civil works such as roads and bridges, and general maintenance and repair services. We also provide project management and consulting services.
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <h3>How do I get a quote for my construction project?</h3>
-                        <div class="faq-toggle"><i class="fas fa-plus"></i></div>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            Getting a quote is easy! You can click the "Get Quote" button on our website, call us at 0927 772 016, or email us at info@makerconstruction.com. Our team will assess your requirements and provide a detailed estimate tailored to your project needs.
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <h3>Do you work on projects outside of Juba?</h3>
-                        <div class="faq-toggle"><i class="fas fa-plus"></i></div>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            Yes! While we are based in Juba, South Sudan, we serve clients throughout the region and surrounding areas. Contact us to discuss your project location, and we'll work out the best approach for your construction needs.
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <h3>What is your typical project timeline?</h3>
-                        <div class="faq-toggle"><i class="fas fa-plus"></i></div>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            Project timelines vary depending on the scope and complexity of the work. Small renovations may take a few weeks, while larger construction projects can take several months. We provide a detailed timeline during the planning phase and keep you updated throughout the process.
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="500">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <h3>Does MCC offer maintenance services after project completion?</h3>
-                        <div class="faq-toggle"><i class="fas fa-plus"></i></div>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            Absolutely! We offer comprehensive maintenance and repair services to keep your buildings in optimal condition. We also provide warranty support on our completed projects and are always available for follow-up consultations and service requests.
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="600">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <h3>How do you ensure quality and safety on construction sites?</h3>
-                        <div class="faq-toggle"><i class="fas fa-plus"></i></div>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            We implement strict quality control protocols and safety standards on all our projects. Our skilled workforce is trained in safety procedures, we use premium materials, and we conduct regular site inspections to ensure everything meets our high standards of quality and safety.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content" data-aos="fade-up">
-                <h2>Ready to Start Your Next Project?</h2>
-                <p>Let's build something amazing together. Contact us today for a free consultation and quote on your construction project.</p>
-                <div class="cta-buttons">
-                    <a href="tel:0927772016" class="btn-primary">
-                        <i class="fas fa-phone"></i>
-                        Call Us: 0927 772 016
-                    </a>
-                    <button class="btn-secondary" onclick="openModal()">
-                        <i class="fas fa-file-alt"></i>
-                        Get Free Quote
+                    <!-- About Accordion -->
+                    <button class="mobile-accordion-btn" data-target="aboutMobile">
+                        About
+                        <svg class="accordion-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                     </button>
+                    <div id="aboutMobile" class="mobile-accordion-content">
+                        <a href="#mission" class="mobile-link-sub">Our Mission</a>
+                        <a href="#team" class="mobile-link-sub">Our Team</a>
+                        <a href="#partners" class="mobile-link-sub">Partners</a>
+                    </div>
+
+                    <!-- Programs Accordion -->
+                    <button class="mobile-accordion-btn" data-target="programsMobile">
+                        Programs
+                        <svg class="accordion-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div id="programsMobile" class="mobile-accordion-content">
+                        <a href="#programs" class="mobile-link-sub">Peacebuilding</a>
+                        <a href="#programs" class="mobile-link-sub">Youth Empowerment</a>
+                        <a href="#programs" class="mobile-link-sub">Education & Training</a>
+                        <a href="#programs" class="mobile-link-sub">Advocacy</a>
+                    </div>
+
+                    <!-- NEW: Events & Gallery -->
+                    <a href="#events" class="mobile-link block px-4 py-3 font-medium text-gray-700 hover:bg-panda-light rounded-xl">Events</a>
+                    <a href="#gallery" class="mobile-link block px-4 py-3 font-medium text-gray-700 hover:bg-panda-light rounded-xl">Gallery</a>
+
+                    <a href="#news" class="mobile-link block px-4 py-3 font-medium text-gray-700 hover:bg-panda-light rounded-xl">News</a>
+                    <a href="#support" class="px-3 py-2 text-sm font-medium text-gray-700 hover:text-panda-teal rounded-lg hover:bg-panda-light">Support</a>
+                    <a href="#contact" class="mobile-link block px-4 py-3 font-medium text-gray-700 hover:bg-panda-light rounded-xl">Contact</a>
+                </div>
+                <div class="mt-6">
+                    <a href="#donate" class="btn-gold-pulse block text-center px-5 py-3 bg-panda-gold text-white font-semibold rounded-full">Get Involved</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overlay -->
+        <div id="mobile-overlay" class="fixed inset-0 bg-black/40 z-40 hidden lg:hidden"></div>
+    </nav>
+
+    <!-- ==================== HERO ==================== -->
+    <section id="home" class="relative min-h-screen flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1590682680695-43b964a3ae17?w=1800&q=80" alt="Peace and community" class="w-full h-full object-cover" loading="eager" />
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-40 w-full">
+            <div class="max-w-3xl">
+                <span class="inline-block px-4 py-1.5 bg-panda-gold/20 backdrop-blur-sm text-panda-gold text-xs sm:text-sm font-semibold rounded-full mb-6 uppercase border border-panda-gold/30">Peace Action Network for Development Agency</span>
+                <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
+                    Building Peace,<br /><span class="text-panda-gold">Empowering Communities</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-200 leading-relaxed mb-8 max-w-xl">
+                    PANDA works to foster peace, unity, and sustainable development across South Sudan through dialogue, education, and youth engagement.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#programs" class="btn-gold-pulse inline-flex items-center justify-center px-7 py-3.5 bg-panda-gold text-white font-semibold rounded-full shadow-xl hover:bg-yellow-600 transition text-base">
+                        Explore Our Work
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
+                    <a href="#news" class="inline-flex items-center justify-center px-7 py-3.5 bg-white/15 backdrop-blur-sm text-white font-semibold rounded-full border-2 border-white/40 hover:bg-white/25 transition text-base">
+                        Read Our Stories
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+            <svg class="w-8 h-8 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+        </div>
+    </section>
+
+    <!-- ==================== IMPACT STATS ==================== -->
+    <section id="impact" class="relative -mt-20 z-20">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+                <div class="fade-up bg-white rounded-3xl shadow-xl p-5 sm:p-7 text-center border">
+                    <div class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-panda-blue counter-value mb-1" data-target="264" data-suffix="+">0</div>
+                    <p class="text-xs sm:text-sm text-gray-500">Followers</p>
+                </div>
+                <div class="fade-up fade-up-delay-1 bg-white rounded-3xl shadow-xl p-5 sm:p-7 text-center border">
+                    <div class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-panda-blue counter-value mb-1" data-target="75" data-suffix="+">0</div>
+                    <p class="text-xs sm:text-sm text-gray-500">Following</p>
+                </div>
+                <div class="fade-up fade-up-delay-2 bg-white rounded-3xl shadow-xl p-5 sm:p-7 text-center border">
+                    <div class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-panda-blue counter-value mb-1" data-target="12" data-suffix="+">0</div>
+                    <p class="text-xs sm:text-sm text-gray-500">Peace Initiatives</p>
+                </div>
+                <div class="fade-up fade-up-delay-3 bg-white rounded-3xl shadow-xl p-5 sm:p-7 text-center border">
+                    <div class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-panda-blue counter-value mb-1" data-target="5" data-suffix="+">0</div>
+                    <p class="text-xs sm:text-sm text-gray-500">Years of Service</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="section contact" id="contact">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info" data-aos="fade-right" data-aos-duration="800">
-                    <div class="section-label">Get In Touch</div>
-                    <h2 class="section-title">Let's Build Something Great Together</h2>
-                    <p class="contact-text">We're always ready to discuss your construction needs. Whether you have a question about our services, need a quote, or want to schedule a consultation, don't hesitate to reach out.</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-item-icon">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div class="contact-item-content">
-                                <h4>Phone</h4>
-                                <a href="tel:0927772016">0927 772 016</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-item-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-item-content">
-                                <h4>Email</h4>
-                                <a href="mailto:info@makerconstruction.com">info@makerconstruction.com</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-item-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-item-content">
-                                <h4>Location</h4>
-                                <p>Juba, South Sudan</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-item-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div class="contact-item-content">
-                                <h4>Availability</h4>
-                                <p>Open for projects and consultations</p>
-                            </div>
+    <!-- ==================== MISSION / ABOUT ==================== -->
+    <section id="mission" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="fade-up image-zoom-wrapper rounded-4xl overflow-hidden shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=800&q=80" alt="Community peace" class="w-full h-80 lg:h-[480px] object-cover" loading="lazy" />
+                </div>
+                <div class="fade-up fade-up-delay-2">
+                    <span class="text-panda-teal font-semibold text-sm uppercase tracking-wider">Who We Are</span>
+                    <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-panda-blue mt-3 mb-6">Our Mission & Vision</h2>
+                    <p class="text-gray-600 leading-relaxed mb-5">
+                        <strong>Peace Action Network for Development Agency (PANDA)</strong> is a non‑governmental organization dedicated to promoting peace, unity, and sustainable development in South Sudan. We believe that lasting peace begins with dialogue, education, and the empowerment of young people.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed mb-8">
+                        Our vision is a South Sudan where every community lives in harmony, every child has access to education, and every young person is equipped to lead with integrity.
+                    </p>
+                    <a href="#team" class="inline-flex items-center gap-2 text-panda-teal font-semibold hover:text-panda-blue transition-colors group">
+                        Meet our team
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==================== CORE VALUES ==================== -->
+<section id="values" class="py-20 lg:py-28 bg-panda-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+            <span class="text-panda-gold font-semibold text-sm uppercase tracking-wider">Our Foundation</span>
+            <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-panda-blue mt-3 mb-5">Our Core Values</h2>
+            <p class="text-gray-600 text-lg">The principles that guide everything we do at PANDA Foundation.</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            <!-- Value 1 -->
+            <div class="fade-up card-gradient text-center">
+                <div class="text-4xl mb-4">🕊️</div>
+                <h3 class="font-display text-xl font-bold text-panda-blue mb-2">Peace & Unity</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">We believe lasting peace is built through dialogue, understanding, and reconciliation across all communities.</p>
+            </div>
+
+            <!-- Value 2 -->
+            <div class="fade-up fade-up-delay-1 card-gradient text-center">
+                <div class="text-4xl mb-4">🤝</div>
+                <h3 class="font-display text-xl font-bold text-panda-blue mb-2">Integrity</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">We operate with transparency, honesty, and accountability in all our actions and partnerships.</p>
+            </div>
+
+            <!-- Value 3 -->
+            <div class="fade-up fade-up-delay-2 card-gradient text-center">
+                <div class="text-4xl mb-4">🌱</div>
+                <h3 class="font-display text-xl font-bold text-panda-blue mb-2">Empowerment</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">We equip individuals and communities with the skills, knowledge, and confidence to create change.</p>
+            </div>
+
+            <!-- Value 4 -->
+            <div class="fade-up fade-up-delay-3 card-gradient text-center">
+                <div class="text-4xl mb-4">🤗</div>
+                <h3 class="font-display text-xl font-bold text-panda-blue mb-2">Inclusion</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">We embrace diversity and ensure every voice is heard, respected, and valued in our work.</p>
+            </div>
+
+            <!-- Value 5 (centered on larger screens) -->
+            <div class="fade-up fade-up-delay-4 card-gradient text-center sm:col-span-2 lg:col-span-2 max-w-lg mx-auto">
+                <div class="text-4xl mb-4">💡</div>
+                <h3 class="font-display text-xl font-bold text-panda-blue mb-2">Innovation</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">We embrace creative solutions, adaptive learning, and new approaches to peacebuilding and development.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- ==================== PROGRAMS ==================== -->
+    <section id="programs" class="py-20 lg:py-28 bg-panda-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-panda-teal font-semibold text-sm uppercase tracking-wider">Our Programs</span>
+                <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-panda-blue mt-3 mb-5">What We Do</h2>
+                <p class="text-gray-600 text-lg">Practical programs designed to heal, educate, and empower communities across South Sudan.</p>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                <div class="fade-up card-gradient text-center">
+                    <div class="text-4xl mb-4">🕊️</div>
+                    <h3 class="font-display text-xl font-bold text-panda-blue mb-2">Peacebuilding</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Dialogue forums, conflict resolution training, and reconciliation initiatives for communities in conflict.</p>
+                </div>
+                <div class="fade-up fade-up-delay-1 card-gradient text-center">
+                    <div class="text-4xl mb-4">🧑‍🎓</div>
+                    <h3 class="font-display text-xl font-bold text-panda-blue mb-2">Youth Empowerment</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Leadership training, mentorship, and skills development for young people to become agents of change.</p>
+                </div>
+                <div class="fade-up fade-up-delay-2 card-gradient text-center">
+                    <div class="text-4xl mb-4">📚</div>
+                    <h3 class="font-display text-xl font-bold text-panda-blue mb-2">Education & Training</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Workshops and online sessions on peace, integrity, and community development.</p>
+                </div>
+                <div class="fade-up fade-up-delay-3 card-gradient text-center">
+                    <div class="text-4xl mb-4">📢</div>
+                    <h3 class="font-display text-xl font-bold text-panda-blue mb-2">Advocacy</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Amplifying the voices of the marginalized and advocating for policies that foster peace and justice.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== EVENTS (NEW) ==================== -->
+    <section id="events" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-panda-gold font-semibold text-sm uppercase tracking-wider">Upcoming</span>
+                <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-panda-blue mt-3 mb-5">Events & Activities</h2>
+                <p class="text-gray-600 text-lg">Join us in our mission – participate in our upcoming peacebuilding and community development events.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Event 1 -->
+                <div class="fade-up card-gradient">
+                    <div class="flex items-start gap-3 mb-3">
+                        <span class="text-3xl">📅</span>
+                        <div>
+                            <h3 class="font-display text-xl font-bold text-panda-blue">Online Training – Session 2</h3>
+                            <p class="text-sm text-gray-500">Saturday, 1st August 2026 • 8:30 PM EAT</p>
                         </div>
                     </div>
-                    <div class="contact-social">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-3">Theme: "Educate to Understand, Lead with Integrity, and Empower Young People to Build Peaceful Communities."</p>
+                    <a href="#" class="text-panda-teal font-semibold text-sm hover:underline">Join on Google Meet →</a>
+                </div>
+                <!-- Event 2 -->
+                <div class="fade-up fade-up-delay-1 card-gradient">
+                    <div class="flex items-start gap-3 mb-3">
+                        <span class="text-3xl">🤝</span>
+                        <div>
+                            <h3 class="font-display text-xl font-bold text-panda-blue">Community Peace Dialogue</h3>
+                            <p class="text-sm text-gray-500">Juba, South Sudan • 15th August 2026</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-3">Bringing together community leaders, youth, and women to discuss sustainable peace and reconciliation.</p>
+                    <a href="#" class="text-panda-teal font-semibold text-sm hover:underline">Register now →</a>
+                </div>
+                <!-- Event 3 -->
+                <div class="fade-up fade-up-delay-2 card-gradient">
+                    <div class="flex items-start gap-3 mb-3">
+                        <span class="text-3xl">🌱</span>
+                        <div>
+                            <h3 class="font-display text-xl font-bold text-panda-blue">Youth Leadership Workshop</h3>
+                            <p class="text-sm text-gray-500">Malakal • 22nd August 2026</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-3">Empowering young leaders with skills in conflict resolution, project management, and community organizing.</p>
+                    <a href="#" class="text-panda-teal font-semibold text-sm hover:underline">Learn more →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SUPPORT / VOLUNTEER ==================== -->
+<section id="support" class="py-20 lg:py-28 bg-panda-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+            <span class="text-panda-gold font-semibold text-sm uppercase tracking-wider">Get Active</span>
+            <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-panda-blue mt-3 mb-5">Ways to Support</h2>
+            <p class="text-gray-600 text-lg">Your skills, time, and resources can make a real difference. Here are some ways you can contribute.</p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="fade-up card-gradient text-center">
+                <div class="text-4xl mb-3">🕊️</div>
+                <h3 class="font-display text-xl font-bold text-panda-blue mb-2">Become a Peace Ambassador</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Represent PANDA in your community, lead dialogues, and promote peacebuilding activities.</p>
+                <a href="#contact" class="inline-block mt-4 text-panda-teal font-semibold text-sm hover:underline">Express interest →</a>
+            </div>
+            <div class="fade-up fade-up-delay-1 card-gradient text-center">
+                <div class="text-4xl mb-3">🧑‍🏫</div>
+                <h3 class="font-display text-xl font-bold text-panda-blue mb-2">Volunteer Trainer</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Facilitate workshops on leadership, conflict resolution, or livelihood skills for youth and women.</p>
+                <a href="#contact" class="inline-block mt-4 text-panda-teal font-semibold text-sm hover:underline">Sign up →</a>
+            </div>
+            <div class="fade-up fade-up-delay-2 card-gradient text-center">
+                <div class="text-4xl mb-3">🤝</div>
+                <h3 class="font-display text-xl font-bold text-panda-blue mb-2">Partner Organisation</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Collaborate with us on joint projects, funding, or technical support to scale our impact.</p>
+                <a href="#contact" class="inline-block mt-4 text-panda-teal font-semibold text-sm hover:underline">Get in touch →</a>
+            </div>
+        </div>
+        <div class="text-center mt-10">
+            <a href="#contact" class="inline-flex items-center gap-2 text-panda-teal font-semibold hover:text-panda-blue transition group">
+                Have another idea? Contact us
+                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+    <!-- ==================== GALLERY (NEW) ==================== -->
+    <section id="gallery" class="py-20 lg:py-28 bg-panda-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-panda-teal font-semibold text-sm uppercase tracking-wider">Visual Stories</span>
+                <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-panda-blue mt-3 mb-5">Gallery</h2>
+                <p class="text-gray-600 text-lg">Moments of peace, unity, and community engagement captured in images.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=600&q=80" alt="Workshop" loading="lazy" />
+                    <div class="caption">Youth Workshop</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=600&q=80" alt="Community gathering" loading="lazy" />
+                    <div class="caption">Community Dialogue</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=600&q=80" alt="Peace march" loading="lazy" />
+                    <div class="caption">Peace Walk</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=600&q=80" alt="Training session" loading="lazy" />
+                    <div class="caption">Training Session</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80" alt="Children" loading="lazy" />
+                    <div class="caption">Children's Program</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1590682680695-43b964a3ae17?w=600&q=80" alt="Group photo" loading="lazy" />
+                    <div class="caption">Group Photo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== NEWS (original posts) ==================== -->
+    <section id="news" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+                <div>
+                    <span class="text-panda-teal font-semibold text-sm uppercase tracking-wider">News & Updates</span>
+                    <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-panda-blue mt-3">Latest from PANDA</h2>
+                </div>
+                <a href="#" class="text-panda-teal font-semibold hover:text-panda-blue flex items-center gap-1">
+                    View All
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Post 1 -->
+                <div class="fade-up card-gradient">
+                    <span class="text-xs text-panda-gold font-semibold uppercase">Yesterday</span>
+                    <h3 class="font-display text-lg font-bold text-panda-blue mt-2 mb-3">"In life, do not hurt someone you do not truly know..."</h3>
+                    <p class="text-gray-500 text-sm line-clamp-4">A powerful reflection on forgiveness and the unseen burdens others carry. Read the full message from our team.</p>
+                    <div class="mt-4 text-xs text-gray-400">PANDA Foundation • 1 min read</div>
+                </div>
+                <!-- Post 2 -->
+                <div class="fade-up fade-up-delay-1 card-gradient">
+                    <span class="text-xs text-panda-gold font-semibold uppercase">July 28, 2026</span>
+                    <h3 class="font-display text-lg font-bold text-panda-blue mt-2 mb-3">PANDA Online Training – Session 2</h3>
+                    <p class="text-gray-500 text-sm line-clamp-4">"Educate to Understand, Lead with Integrity, and Empower Young People to Build Peaceful Communities." Join us on Google Meet.</p>
+                    <div class="mt-4 text-xs text-gray-400">PANDA Foundation • 2 min read</div>
+                </div>
+                <!-- Post 3 -->
+                <div class="fade-up fade-up-delay-2 card-gradient">
+                    <span class="text-xs text-panda-gold font-semibold uppercase">July 26, 2026</span>
+                    <h3 class="font-display text-lg font-bold text-panda-blue mt-2 mb-3">1983. 1993. 2003. 2013. 2023... and now 2026.</h3>
+                    <p class="text-gray-500 text-sm line-clamp-4">A call to action for South Sudan: choose peace over violence, unity over tribalism.</p>
+                    <div class="mt-4 text-xs text-gray-400">By William Lu Long • 2 min read</div>
+                </div>
+                <!-- Post 4 -->
+                <div class="fade-up fade-up-delay-3 card-gradient">
+                    <span class="text-xs text-panda-gold font-semibold uppercase">July 24, 2026</span>
+                    <h3 class="font-display text-lg font-bold text-panda-blue mt-2 mb-3">A Cry for Peace to the Beloved People of Tonj</h3>
+                    <p class="text-gray-500 text-sm line-clamp-4">Alfred Lual Deng shares an emotional plea for reconciliation and an end to violence.</p>
+                    <div class="mt-4 text-xs text-gray-400">By Alfred Lual Deng • 3 min read</div>
+                </div>
+                <!-- Post 5 -->
+                <div class="fade-up fade-up-delay-4 card-gradient">
+                    <span class="text-xs text-panda-gold font-semibold uppercase">July 23, 2026</span>
+                    <h3 class="font-display text-lg font-bold text-panda-blue mt-2 mb-3">Good morning from Mapuordit!</h3>
+                    <p class="text-gray-500 text-sm line-clamp-4">Mr Admin sends greetings from the field. Tell us what you love most about PANDA.</p>
+                    <div class="mt-4 text-xs text-gray-400">PANDA Foundation • 1 min read</div>
+                </div>
+                <!-- Post 6 -->
+                <div class="fade-up fade-up-delay-4 card-gradient">
+                    <span class="text-xs text-panda-gold font-semibold uppercase">July 21, 2026</span>
+                    <h3 class="font-display text-lg font-bold text-panda-blue mt-2 mb-3">A Powerful Reflection on Peace</h3>
+                    <p class="text-gray-500 text-sm line-clamp-4">Our latest piece on what it truly means to build peace in our communities.</p>
+                    <div class="mt-4 text-xs text-gray-400">PANDA Foundation • 1 min read</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== TEAM ==================== -->
+    <section id="team" class="py-20 lg:py-28 bg-panda-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="text-panda-teal font-semibold text-sm uppercase tracking-wider">Our Leadership</span>
+            <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-panda-blue mt-3 mb-10">Meet the Team</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <div class="fade-up card-gradient">
+                    <div class="w-24 h-24 rounded-full bg-panda-blue/20 mx-auto flex items-center justify-center text-4xl">👤</div>
+                    <h3 class="font-display text-xl font-bold text-panda-blue mt-4">Alfred Lual Deng</h3>
+                    <p class="text-panda-teal font-medium text-sm">Chief Executive Officer</p>
+                    <p class="text-gray-500 text-sm mt-2">Peace advocate and founder of PANDA, committed to building a united South Sudan.</p>
+                </div>
+                <div class="fade-up fade-up-delay-1 card-gradient">
+                    <div class="w-24 h-24 rounded-full bg-panda-gold/20 mx-auto flex items-center justify-center text-4xl">👤</div>
+                    <h3 class="font-display text-xl font-bold text-panda-blue mt-4">Clement Kau Mabeny</h3>
+                    <p class="text-panda-teal font-medium text-sm">Educational Affairs Manager</p>
+                    <p class="text-gray-500 text-sm mt-2">Tutor at Smooth Star Leadership Institute, leading our training sessions.</p>
+                </div>
+                <div class="fade-up fade-up-delay-2 card-gradient">
+                    <div class="w-24 h-24 rounded-full bg-panda-light mx-auto flex items-center justify-center text-4xl">👤</div>
+                    <h3 class="font-display text-xl font-bold text-panda-blue mt-4">William Lu Long</h3>
+                    <p class="text-panda-teal font-medium text-sm">Senior Advisor</p>
+                    <p class="text-gray-500 text-sm mt-2">Writer and peace activist, sharing powerful messages of hope and change.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PARTNERS ==================== -->
+    <section id="partners" class="py-16 lg:py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="text-panda-teal font-semibold text-sm uppercase tracking-wider">Partners</span>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-panda-blue mt-3 mb-10">Trusted Collaborators</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+                <div class="fade-up grayscale hover:grayscale-0 transition"><span class="font-display text-panda-blue font-bold text-lg">Smooth Star Institute</span></div>
+                <div class="fade-up fade-up-delay-1 grayscale hover:grayscale-0 transition"><span class="font-display text-panda-blue font-bold text-lg">SSBC</span></div>
+                <div class="fade-up fade-up-delay-2 grayscale hover:grayscale-0 transition"><span class="font-display text-panda-blue font-bold text-sm">Ministry of Peace</span></div>
+                <div class="fade-up fade-up-delay-3 grayscale hover:grayscale-0 transition"><span class="font-display text-panda-blue font-bold text-lg">Local Communities</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== DONATE / GET INVOLVED ==================== -->
+    <section id="donate" class="relative py-20 lg:py-28 bg-panda-dark overflow-hidden">
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="text-panda-gold font-semibold text-sm uppercase tracking-wider">Get Involved</span>
+            <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mt-4 mb-5">Together, We Can Build Peace</h2>
+            <p class="text-gray-300 text-lg mb-10 max-w-2xl mx-auto">
+                Join PANDA in our mission to heal communities, empower youth, and create a united South Sudan.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#contact" class="btn-gold-pulse inline-flex items-center justify-center px-8 py-4 bg-panda-gold text-white font-bold text-lg rounded-full shadow-2xl hover:bg-yellow-600">🤝 Partner With Us</a>
+                <a href="#news" class="inline-flex items-center justify-center px-8 py-4 bg-white/10 text-white font-semibold rounded-full border-2 border-white/30 hover:bg-white/20">Read Our Stories</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CONTACT ==================== -->
+    <section id="contact" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="fade-up">
+                    <span class="text-panda-teal font-semibold text-sm uppercase">Contact</span>
+                    <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-panda-blue mt-3 mb-6">Get in Touch</h2>
+                    <p class="text-gray-600 mb-8">We'd love to hear from you. Reach out to collaborate, volunteer, or just share your thoughts.</p>
+                    <div class="space-y-5">
+                        <div class="flex gap-3">
+                            <span class="text-panda-teal">📞</span>
+                            <div>
+                                <p class="font-semibold text-panda-blue">Phone</p>
+                                <a href="tel:+211921023038" class="text-gray-500 text-sm">0921 023 038</a><br />
+                                <a href="tel:+211928842028" class="text-gray-500 text-sm">+211 928 842 028</a>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <span class="text-panda-gold">✉️</span>
+                            <div>
+                                <p class="font-semibold text-panda-blue">Email</p>
+                                <a href="mailto:info@pandafoundation.org" class="text-panda-teal text-sm">info@pandafoundation.org</a>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <span class="text-panda-blue">📍</span>
+                            <div>
+                                <p class="font-semibold text-panda-blue">Address</p>
+                                <p class="text-gray-500 text-sm">Juba, South Sudan</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="contact-form-wrapper" data-aos="fade-left" data-aos-duration="800">
-                    <h3>Send Us a Message</h3>
-                    <p>Fill out the form below and we'll get back to you promptly.</p>
-                    <form id="contactForm" onsubmit="handleContactSubmit(event)">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Full Name *</label>
-                                <input type="text" placeholder="John Doe" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Phone Number *</label>
-                                <input type="tel" placeholder="+211 ..." required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Email Address</label>
-                            <input type="email" placeholder="your@email.com">
-                        </div>
-                        <div class="form-group">
-                            <label>Service Interested In</label>
-                            <select>
-                                <option value="">Select a service</option>
-                                <option>Building Construction</option>
-                                <option>Renovation & Remodeling</option>
-                                <option>Project Management</option>
-                                <option>Civil Works</option>
-                                <option>Maintenance & Repair</option>
-                                <option>Consulting & Design</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Project Details</label>
-                            <textarea placeholder="Tell us about your project..."></textarea>
-                        </div>
-                        <button type="submit" class="btn-submit">
-                            <i class="fas fa-paper-plane"></i>
-                            Send Message
-                        </button>
+                <div class="fade-up fade-up-delay-2 bg-panda-light rounded-3xl shadow-lg p-7">
+                    <h3 class="font-display text-2xl font-bold text-panda-blue mb-6">Send a Message</h3>
+                    <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <input type="text" placeholder="Full Name" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-panda-teal/20 outline-none" />
+                        <input type="email" placeholder="Email" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-panda-teal/20 outline-none" />
+                        <textarea rows="4" placeholder="Your message" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-panda-teal/20 outline-none"></textarea>
+                        <button type="submit" class="btn-gold-pulse w-full py-3.5 bg-panda-gold text-white font-semibold rounded-full">Send Message</button>
+                        <p id="form-success" class="hidden text-panda-teal text-sm text-center mt-2">✅ Message sent successfully!</p>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="#home" class="nav-logo">
-                        <div class="logo-icon">M</div>
-                        <div class="logo-text">
-                            <span class="brand">Maker Construction</span>
-                            <span class="tagline">Excellence in Action</span>
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-panda-dark text-white pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-16">
+                <div>
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 bg-panda-gold rounded-full flex items-center justify-center flex-shrink-0">
+                            <span class="text-white font-display font-bold text-lg">🐼</span>
                         </div>
-                    </a>
-                    <p>Maker Construction Company is a dynamic construction firm based in Juba, South Sudan, committed to delivering reliable, high-quality construction services.</p>
+                        <div>
+                            <span class="font-display font-semibold text-white text-base leading-tight block">PANDA Foundation</span>
+                            <span class="text-gray-400 text-xs tracking-wide">Peace Action Network</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6 max-w-sm">
+                        Building peace, empowering youth, and fostering sustainable development in South Sudan.
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <a href="#" class="social-icon w-9 h-9 bg-white/10 hover:bg-panda-gold rounded-full flex items-center justify-center transition-colors" aria-label="Facebook">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="#" class="social-icon w-9 h-9 bg-white/10 hover:bg-panda-gold rounded-full flex items-center justify-center transition-colors" aria-label="Twitter">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a href="mailto:info@pandafoundation.org" class="social-icon w-9 h-9 bg-white/10 hover:bg-panda-gold rounded-full flex items-center justify-center transition-colors" aria-label="Email">
+                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        </a>
+                    </div>
                 </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#contact">Contact</a></li>
+
+                <div>
+                    <h4 class="font-display font-bold text-white text-lg mb-5">Programs</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#programs" class="footer-link text-gray-400 hover:text-panda-gold text-sm transition-colors inline-block">Peacebuilding</a></li>
+                        <li><a href="#programs" class="footer-link text-gray-400 hover:text-panda-gold text-sm transition-colors inline-block">Youth Empowerment</a></li>
+                        <li><a href="#programs" class="footer-link text-gray-400 hover:text-panda-gold text-sm transition-colors inline-block">Education & Training</a></li>
+                        <li><a href="#programs" class="footer-link text-gray-400 hover:text-panda-gold text-sm transition-colors inline-block">Advocacy</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Our Services</h4>
-                    <ul>
-                        <li><a href="#services">Building Construction</a></li>
-                        <li><a href="#services">Renovation</a></li>
-                        <li><a href="#services">Project Management</a></li>
-                        <li><a href="#services">Civil Works</a></li>
-                        <li><a href="#services">Maintenance</a></li>
+
+                <div>
+                    <h4 class="font-display font-bold text-white text-lg mb-5">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="footer-link text-gray-400 hover:text-panda-gold text-sm transition-colors inline-block">Home</a></li>
+                        <li><a href="#mission" class="footer-link text-gray-400 hover:text-panda-gold text-sm transition-colors inline-block">About</a></li>
+                        <li><a href="#events" class="footer-link text-gray-400 hover:text-panda-gold text-sm transition-colors inline-block">Events</a></li>
+                        <li><a href="#gallery" class="footer-link text-gray-400 hover:text-panda-gold text-sm transition-colors inline-block">Gallery</a></li>
+                        <li><a href="#news" class="footer-link text-gray-400 hover:text-panda-gold text-sm transition-colors inline-block">News</a></li>
+                        <li><a href="#contact" class="footer-link text-gray-400 hover:text-panda-gold text-sm transition-colors inline-block">Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Contact Us</h4>
-                    <ul>
-                        <li><a href="tel:0927772016"><i class="fas fa-phone" style="margin-right:8px;font-size:12px;"></i>0927 772 016</a></li>
-                        <li><a href="mailto:info@makerconstruction.com"><i class="fas fa-envelope" style="margin-right:8px;font-size:12px;"></i>info@makerconstruction.com</a></li>
-                        <li><a href="#contact"><i class="fas fa-map-marker-alt" style="margin-right:8px;font-size:12px;"></i>Juba, South Sudan</a></li>
+
+                <div>
+                    <h4 class="font-display font-bold text-white text-lg mb-5">Contact</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li class="flex items-start gap-2">
+                            <svg class="w-4 h-4 text-panda-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            <a href="tel:+211921023038" class="hover:text-panda-gold transition-colors">0921 023 038</a>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="w-4 h-4 text-panda-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            <a href="mailto:info@pandafoundation.org" class="hover:text-panda-gold transition-colors">info@pandafoundation.org</a>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="w-4 h-4 text-panda-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+                            <span>Juba, South Sudan</span>
+                        </li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Maker Construction Company. All rights reserved.</p>
-                <div class="footer-bottom-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p class="text-gray-500 text-xs text-center sm:text-left">
+                    &copy; <span id="current-year"></span> PANDA Foundation. All rights reserved. |
+                    <a href="#" class="hover:text-gray-300 transition-colors">Privacy Policy</a> |
+                    <a href="#" class="hover:text-gray-300 transition-colors">Terms of Service</a>
+                </p>
+                <p class="text-gray-600 text-xs">
+                    <span class="inline-block">South Sudan NGO</span>
+                    <span class="mx-2 hidden sm:inline">•</span>
+                    <span class="inline-block">Peace & Development</span>
+                </p>
             </div>
         </div>
     </footer>
 
-    <!-- Quote Modal -->
-    <div class="modal-overlay" id="quoteModal">
-        <div class="modal">
-            <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
-            <h2>Request a Quote</h2>
-            <p>Tell us about your project and we'll provide a detailed estimate.</p>
-            <form onsubmit="handleQuoteSubmit(event)">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Full Name *</label>
-                        <input type="text" placeholder="Your full name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Phone *</label>
-                        <input type="tel" placeholder="+211 ..." required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" placeholder="your@email.com">
-                </div>
-                <div class="form-group">
-                    <label>Project Type</label>
-                    <select>
-                        <option value="">Select project type</option>
-                        <option>Residential Construction</option>
-                        <option>Commercial Construction</option>
-                        <option>Renovation & Remodeling</option>
-                        <option>Civil Works</option>
-                        <option>Maintenance & Repair</option>
-                        <option>Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Project Description</label>
-                    <textarea placeholder="Describe your project requirements, location, budget range, and timeline..." rows="4"></textarea>
-                </div>
-                <button type="submit" class="btn-submit">
-                    <i class="fas fa-paper-plane"></i>
-                    Submit Quote Request
-                </button>
-            </form>
-        </div>
-    </div>
+    <button id="back-to-top" class="fixed bottom-6 right-6 z-50 w-12 h-12 bg-panda-gold text-white rounded-full shadow-xl flex items-center justify-center opacity-0 pointer-events-none transition-all hover:bg-yellow-600">↑</button>
 
-    <!-- Back to Top -->
-    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- ==================== JAVASCRIPT ==================== -->
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 700,
-            easing: 'ease-out-cubic',
-            once: true,
-            offset: 80
-        });
+        // ── Mobile menu toggle ──
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileOverlay = document.getElementById('mobile-overlay');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+        const menuIconClose = document.getElementById('menu-icon-close');
+        const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-link-sub');
 
-        // Page Loader
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('pageLoader').classList.add('hidden');
-            }, 800);
-        });
-
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-        const backToTop = document.getElementById('backToTop');
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 80) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-
-            if (window.scrollY > 500) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-
-            // Active nav link
-            updateActiveNav();
-        });
-
-        // Active nav link updater
-        function updateActiveNav() {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-links a');
-            let current = '';
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 120;
-                if (window.scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        // Mobile Navigation
-        function toggleMobileNav() {
-            const hamburger = document.getElementById('hamburger');
-            const mobileNav = document.getElementById('mobileNav');
-            const overlay = document.getElementById('mobileOverlay');
-
-            hamburger.classList.toggle('active');
-            mobileNav.classList.toggle('active');
-            overlay.classList.toggle('active');
-            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
-        }
-
-        // FAQ Toggle
-        function toggleFaq(element) {
-            const faqItem = element.parentElement;
-            const isActive = faqItem.classList.contains('active');
-
-            // Close all
-            document.querySelectorAll('.faq-item').forEach(item => {
-                item.classList.remove('active');
-            });
-
-            // Open clicked if it wasn't active
-            if (!isActive) {
-                faqItem.classList.add('active');
-            }
-        }
-
-        // Quote Modal
-        function openModal() {
-            document.getElementById('quoteModal').classList.add('active');
+        function openMobileMenu() {
+            mobileMenu.classList.add('open');
+            mobileOverlay.classList.remove('hidden');
+            menuIconOpen.classList.add('hidden');
+            menuIconClose.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
 
-        function closeModal() {
-            document.getElementById('quoteModal').classList.remove('active');
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            mobileOverlay.classList.add('hidden');
+            menuIconOpen.classList.remove('hidden');
+            menuIconClose.classList.add('hidden');
             document.body.style.overflow = '';
         }
 
-        // Close modal on overlay click
-        document.getElementById('quoteModal').addEventListener('click', (e) => {
-            if (e.target === document.getElementById('quoteModal')) {
-                closeModal();
-            }
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.contains('open') ? closeMobileMenu() : openMobileMenu();
         });
+        mobileOverlay.addEventListener('click', closeMobileMenu);
+        mobileLinks.forEach(l => l.addEventListener('click', closeMobileMenu));
 
-        // Close modal on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
+        // ── Mobile accordion ──
+        document.querySelectorAll('.mobile-accordion-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const targetId = this.getAttribute('data-target');
+                const content = document.getElementById(targetId);
+                if (!content) return;
 
-        // Form submissions
-        function handleContactSubmit(e) {
-            e.preventDefault();
-            const btn = e.target.querySelector('.btn-submit');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-            btn.style.background = '#10b981';
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.style.background = '';
-                e.target.reset();
-            }, 3000);
-        }
-
-        function handleQuoteSubmit(e) {
-            e.preventDefault();
-            const btn = e.target.querySelector('.btn-submit');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-check"></i> Quote Requested!';
-            btn.style.background = '#10b981';
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.style.background = '';
-                e.target.reset();
-                closeModal();
-            }, 3000);
-        }
-
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                const duration = 2000;
-                const start = 0;
-                const startTime = performance.now();
-
-                function updateCounter(currentTime) {
-                    const elapsed = currentTime - startTime;
-                    const progress = Math.min(elapsed / duration, 1);
-                    const easeOut = 1 - Math.pow(1 - progress, 3);
-                    const current = Math.floor(start + (target - start) * easeOut);
-                    counter.textContent = current;
-
-                    if (progress < 1) {
-                        requestAnimationFrame(updateCounter);
-                    }
+                const parent = this.closest('.flex.flex-col');
+                if (parent) {
+                    parent.querySelectorAll('.mobile-accordion-content.open').forEach(el => {
+                        if (el.id !== targetId) {
+                            el.classList.remove('open');
+                            el.previousElementSibling?.classList.remove('active');
+                        }
+                    });
                 }
 
-                requestAnimationFrame(updateCounter);
+                const isOpen = content.classList.contains('open');
+                if (isOpen) {
+                    content.classList.remove('open');
+                    this.classList.remove('active');
+                } else {
+                    content.classList.add('open');
+                    this.classList.add('active');
+                }
             });
-        }
+        });
 
-        // Trigger counter animation when hero is visible
-        const heroObserver = new IntersectionObserver((entries) => {
+        // ── Navbar scroll ──
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            navbar.classList.toggle('scrolled', y > 50);
+            if (y > 600) {
+                backToTop.classList.remove('opacity-0', 'pointer-events-none');
+                backToTop.classList.add('opacity-100');
+            } else {
+                backToTop.classList.add('opacity-0', 'pointer-events-none');
+                backToTop.classList.remove('opacity-100');
+            }
+        });
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // ── Fade up observer ──
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    fadeObserver.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+        document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+
+        // ── Counter animation ──
+        const counterObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    animateCounters();
-                    heroObserver.disconnect();
+                    const el = entry.target;
+                    const target = parseInt(el.dataset.target);
+                    const suffix = el.dataset.suffix || '';
+                    let start = null;
+
+                    function step(ts) {
+                        if (!start) start = ts;
+                        const p = Math.min((ts - start) / 2000, 1);
+                        el.textContent = Math.round(p * target) + suffix;
+                        if (p < 1) requestAnimationFrame(step);
+                        else el.textContent = target + suffix;
+                    }
+                    requestAnimationFrame(step);
+                    counterObserver.unobserve(el);
                 }
             });
         }, { threshold: 0.5 });
+        document.querySelectorAll('.counter-value').forEach(el => counterObserver.observe(el));
 
-        const heroStats = document.querySelector('.hero-stats');
-        if (heroStats) heroObserver.observe(heroStats);
-
-        // Particles
-        function createParticles() {
-            const container = document.getElementById('particles');
-            for (let i = 0; i < 30; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.width = (Math.random() * 4 + 2) + 'px';
-                particle.style.height = particle.style.width;
-                particle.style.animationDuration = (Math.random() * 10 + 8) + 's';
-                particle.style.animationDelay = (Math.random() * 10) + 's';
-                container.appendChild(particle);
-            }
+        // ── Form submission ──
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const orig = btn.innerHTML;
+            btn.innerHTML = 'Sending...';
+            btn.disabled = true;
+            setTimeout(() => {
+                document.getElementById('form-success').classList.remove('hidden');
+                btn.innerHTML = orig;
+                btn.disabled = false;
+                e.target.reset();
+                setTimeout(() => document.getElementById('form-success').classList.add('hidden'), 4000);
+            }, 1200);
         }
 
-        createParticles();
+        // ── Current year ──
+        document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        // Smooth scroll for all anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+        // ── Smooth scroll for anchor links ──
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
-                if (href !== '#') {
+                if (href === '#') return;
+                const target = document.querySelector(href);
+                if (target) {
                     e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth' });
-                    }
+                    window.scrollTo({ top: target.offsetTop - navbar.offsetHeight - 10, behavior: 'smooth' });
                 }
             });
         });
     </script>
 </body>
 </html>
-
