@@ -3280,10 +3280,12 @@
     </div>
 </section>
 
-<!-- ============ INLINE STYLES FOR ENHANCED CARDS ============ -->
+<!-- ============ INLINE STYLES FOR FEATURED NEWS CARDS (scoped) ============ -->
 <style>
-    /* Enhanced featured card styles — scoped to avoid breaking existing layout */
+    /* Override flex direction for featured cards to stack vertically */
     .news-card--featured {
+        display: flex;
+        flex-direction: column;       /* image on top, body below */
         border-radius: 18px;
         box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
         transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -3301,13 +3303,19 @@
         padding: 28px 30px 30px;
     }
 
-    /* Accent strip enhancement */
+    /* Full‑width top accent strip */
     .news-card--featured .news-accent-strip {
         height: 5px;
         border-radius: 0;
+        width: 100%;
     }
 
-    /* Responsive: stack featured cards on smaller screens */
+    /* Image container full width */
+    .news-card--featured .news-featured-image {
+        width: 100%;
+    }
+
+    /* Responsive adjustments */
     @media (max-width: 900px) {
         .news-card--featured .news-featured-image {
             height: 200px !important;
